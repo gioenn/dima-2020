@@ -52,7 +52,7 @@ class CalculatorState extends State<Calculator> {
                 ),
               )),
           Factorial(updateResult),
-          Power()
+          Power(updateResult)
         ],
       ),
     );

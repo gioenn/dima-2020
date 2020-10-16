@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'calculator.dart';
 
 class Power extends StatefulWidget {
+  final Function update;
+  Power(this.update);
   PowerState createState() => PowerState();
 }
 
 class PowerState extends State<Power> {
-  final myController1 = TextEditingController();
-  final myController2 = TextEditingController();
+  final baseController = TextEditingController();
+  final expController = TextEditingController();
 
   Widget build(BuildContext context) {
     return Column(
@@ -21,7 +24,7 @@ class PowerState extends State<Power> {
                   width: 100,
                   child: TextField(
                     textAlign: TextAlign.center,
-                    controller: myController1,
+                    controller: baseController,
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
@@ -32,7 +35,7 @@ class PowerState extends State<Power> {
                   width: 100,
                   child: TextField(
                     textAlign: TextAlign.center,
-                    controller: myController2,
+                    controller: expController,
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
@@ -40,7 +43,10 @@ class PowerState extends State<Power> {
                   ))
             ]),
         FlatButton(
-            color: Colors.greenAccent, onPressed: null, child: Text("POWER"))
+            color: Colors.greenAccent,
+            onPressed: () => widget.update(power(
+                int.parse(baseController.text), int.parse(expController.text))),
+            child: Text("POWER"))
       ],
     );
   }

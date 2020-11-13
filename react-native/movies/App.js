@@ -1,46 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import * as React from 'react';
+import MovieListScene from './MovieListScene';
+import MovieDetailScene from './MovieDetailScene';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-} from 'react-native';
-import MovieRest from './Rest';
-import MovieList from './MovieList';
 
-rest = new MovieRest();
+const Stack = createStackNavigator();
 
-export default Movies = () => {
-  [movies, setMovies] = useState([]);
-  return (
-    <SafeAreaView  style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Search"
-        onChangeText={(text) => {
-          rest.search(text, (movies) => setMovies(movies));
-        }}
-      />
-      <MovieList movies={movies} />
-    </SafeAreaView>
-  ) 
-
+export default function App() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={MovieListScene} />
+                <Stack.Screen name="Detail" component={MovieDetailScene} options={({route}) => ({ title: route.params.title })}/>
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  input: {
-    height: 50,
-    margin: 5,
-    fontSize: 20
-  }
-})

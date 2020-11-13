@@ -5,12 +5,23 @@ import Power from './Power'
 
 export default App = () => {
   let [result, setResult] = useState(0);
+  let [onResultChangeList, setOnResultChangeList] = useState([]);
+
+  let addOnResultChange = (f) => {
+    setOnResultChangeList((prev) => [...prev, f]);
+  }
+
+  let changeResult = (n) => {
+    setResult(n);
+    onResultChangeList.forEach(f => f());
+  }
+
   return (
   <SafeAreaView style={styles.container}>    
     <Text style={styles.result}>{result}</Text>
     <View style={styles.container}>
-      <Factorial updateResult={setResult}/>
-      <Power updateResult={setResult}/>
+      <Factorial updateResult={changeResult} onResultChange={addOnResultChange}/>
+      <Power updateResult={changeResult} onResultChange={addOnResultChange}/>
     </View>
   </SafeAreaView>);
 }

@@ -1,8 +1,64 @@
 import React from 'react';
-import {FlatList, Text, Image, View, StyleSheet} from 'react-native';
+import {FlatList, Text, Image, View, StyleSheet, TouchableHighlight} from 'react-native';
 
 
-export default MovieList = (props) => {
-    let movies = props.movies;
-    return (<FlatList />)
+export default MovieList = ({movies, navigate}) => {
+    return (
+    <FlatList 
+        data={movies}
+        keyExtractor={(movie, index) => {
+            return movie.imdbID;
+        }}
+        renderItem={({index, item}) => {
+           return (<MovieRow navigate={navigate} movie={item} />)
+        }}
+    
+    />);
 }
+
+MovieRow = ({movie, navigate}) => {
+    return (
+        <TouchableHighlight activeOpacity={0.9} underlayColor="darkblue" onPress={() => navigate(movie)}>
+            <View style={styles.container}>
+                <Image style={styles.poster} source={{uri: movie.Poster}}/>
+                <View style={[styles.container, styles.description]}>
+                    <Text style={styles.title}>{movie.Title}</Text>
+                    <Text style={styles.year}>{movie.Year}</Text>
+                </View>
+            </View> 
+        </TouchableHighlight>
+   
+
+    );
+}
+
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "white",
+        flex: 1,
+        margin: 8,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    poster: {
+        height: 250,
+        width: 150,
+        marginRight: 10
+    },
+    description: {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between'
+    },
+    title: {
+        fontSize: 20,
+        fontStyle: 'italic',
+        fontWeight: "500"
+    },
+    year : {
+        fontSize: 16,
+        fontWeight: "400"
+    }
+});

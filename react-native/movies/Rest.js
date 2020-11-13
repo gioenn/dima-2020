@@ -1,7 +1,7 @@
 const apikey = 'b8c79639';
 const endpoint = 'http://www.omdbapi.com/'
 
-export default class MovieRest {
+class MovieRest {
 
     search(text, callback){
         if (text == ""){
@@ -24,4 +24,24 @@ export default class MovieRest {
 
     }
 
+    find(movieId, callback){
+        if (movieId == ""){
+            callback([]);
+            return;
+        }
+
+        fetch(endpoint+"?apikey="+apikey+"&i="+movieId)
+            .then((response) => response.json())
+            .then((data) => {
+                    callback(data);
+            }).catch((error) => {
+                console.log(error);
+                callback([]);
+            })
+
+    }
+
 }
+
+const REST = new MovieRest();
+export default REST;

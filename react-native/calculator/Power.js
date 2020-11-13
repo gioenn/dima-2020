@@ -1,10 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, StyleSheet, View, TextInput, Button} from 'react-native';
 import {power} from './Calc';
 
 export default function Power(props) {
     let [baseText, setBaseText] = useState('');
     let [expText, setExpText] = useState('');
+
+    useEffect(() => {
+      props.onResultChange(() => {
+        setBaseText('');
+        setExpText('');
+      })
+    }, [])
+
     return (
     <View style={[styles.container, {flexDirection: 'column'}]}>
       <View style={styles.container}>
@@ -27,8 +35,6 @@ export default function Power(props) {
         onPress={() => {
             let n = power(parseInt(baseText), parseInt(expText));
             props.updateResult(n);
-            setBaseText('');
-            setExpText('');
         }}
       />
       </View>

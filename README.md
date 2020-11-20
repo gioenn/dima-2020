@@ -3,6 +3,7 @@
 Some examples of Flutter, React Native, Android and iOS applications
 
 #### Lectures
+- [Recording 7](https://politecnicomilano.webex.com/recordingservice/sites/politecnicomilano/recording/48a39ff36059456db70f2db5e4eaf4ce/playback)
 - [Recording 6](https://politecnicomilano.webex.com/recordingservice/sites/politecnicomilano/recording/291286a9058144dfa633868ac164a78d/playback)
 - [Recording 5](https://politecnicomilano.webex.com/recordingservice/sites/politecnicomilano/recording/play/3549c6a3bd2a46e0b1c01f91202adbe0)
 - [Recording 4](https://politecnicomilano.webex.com/recordingservice/sites/politecnicomilano/recording/play/cae262a89d48468594c18e8043dfa7d4)
